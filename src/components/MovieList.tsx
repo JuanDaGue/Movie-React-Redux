@@ -1,6 +1,6 @@
-// src/components/MovieList.tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
+import FavoriteButton from './FavoriteButton';
 
 interface Movie {
   id: number;
@@ -18,7 +18,8 @@ const MovieList: React.FC<MovieListProps> = ({ movies }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {movies.map((movie) => (
-        <div key={movie.id} className="border p-4 rounded">
+        <div key={movie.id} className="border p-4 rounded relative">
+          <FavoriteButton movie={movie} />
           <Link to={`/movie/${movie.id}`}>
             <img
               src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
