@@ -1,4 +1,3 @@
-// src/pages/MovieDetails.tsx
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetMovieDetailsQuery } from '../features/movieApi';
@@ -8,7 +7,10 @@ const MovieDetails: React.FC = () => {
     const { data, error, isLoading } = useGetMovieDetailsQuery(Number(id));
     console.log("MovieDetails", data);  
     if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error.message}</div>;
+    if (error) {
+        const errorMessage = 'status' in error ? `Error: ${error.status}` : error.message;
+        return <div>{errorMessage}</div>;
+    }
 
     return (
         <div className="p-4">

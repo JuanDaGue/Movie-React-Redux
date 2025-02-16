@@ -1,4 +1,3 @@
-// src/pages/Home.tsx
 import React, { useState } from 'react';
 import { useGetPopularMoviesQuery } from '../features/movieApi';
 import MovieList from '../components/MovieList';
@@ -8,7 +7,13 @@ const Home: React.FC = () => {
   const { data, error, isLoading } = useGetPopularMoviesQuery(page);
   console.log("Home", data);
   if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) {
+    if ('status' in error) {
+      return <div>Error: {error.status}</div>;
+    } else {
+      return <div>Error: {error.message}</div>;
+    }
+  }
 
   return (
     <div className="p-4">
