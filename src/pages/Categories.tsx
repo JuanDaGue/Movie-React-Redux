@@ -54,7 +54,13 @@ import SkeletonLoader from '../components/SkeletonLoader';
         ? genreError
         : popularError;
 
-    if (error) return <div>Error: {error.message}</div>;
+    if (error) {
+        const errorMessage =
+            'status' in error
+                ? `Error: ${error.status}`
+                : error.message || 'An unknown error occurred';
+        return <div>{errorMessage}</div>;
+    }
 
     return (
         <div className="p-4">
@@ -68,7 +74,7 @@ import SkeletonLoader from '../components/SkeletonLoader';
             {movies?.length === 0 ? (
                 <p className="text-gray-600">No movies found.</p>
             ) : (
-                <MovieList movies={movies || []} />
+                <MovieList movies={movies || [] }  onMovieHover={() => {}}/>
             )}
             {!searchQuery && (
                 <button

@@ -8,12 +8,14 @@ import {
 import MovieList from '../components/MovieList';
 import SearchBar from '../components/SearchBar';
 import SkeletonLoader from '../components/SkeletonLoader';
+import Hero from '../components/Hero'; // Import Hero component
 
 const Home: React.FC = () => {
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
   const [movies, setMovies] = useState<any[]>([]);
   const [hasMore, setHasMore] = useState(true);
+  const [hoveredMovie, setHoveredMovie] = useState<any>(null); // State for hovered movie
 
   const { data: popularMovies, error: popularError, isLoading: popularLoading } =
     useGetPopularMoviesQuery(page);
@@ -47,27 +49,34 @@ const Home: React.FC = () => {
   const isLoading = searchQuery ? searchLoading : popularLoading;
   const error = searchQuery ? searchError : popularError;
 
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) {
+    const errorMessage =
+      'status' in error
+        ? `Error: ${error.status}`
+        : error.message || 'An unknown error occurred';
+    return <div>{errorMessage}</div>;
+  }
 
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Popular Movies</h1>
       <SearchBar onSearch={setSearchQuery} />
+      <Hero movie={hoveredMovie} /> 
       {isLoading ? (
         <SkeletonLoader />
       ) : (
         <InfiniteScroll
-          dataLength={movies.length} // Current number of movies
-          next={loadMoreMovies} // Function to load more movies
-          hasMore={hasMore} // Whether there are more movies to load
-          loader={<SkeletonLoader />} // Show skeleton loader while loading
+          dataLength={movies.length} 
+          next={loadMoreMovies} 
+          hasMore={hasMore} 
+          loader={<SkeletonLoader />} 
           endMessage={
             <p className="text-center text-gray-600 mt-4">
               No more movies to load.
             </p>
           }
         >
-          <MovieList movies={movies} />
+          <MovieList movies={movies} onMovieHover={setHoveredMovie} /> 
         </InfiniteScroll>
       )}
     </div>

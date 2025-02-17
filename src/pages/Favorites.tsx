@@ -10,7 +10,7 @@ const Favorites: React.FC = () => {
         <div>
         <h2 className="text-xl font-bold mb-4">Favorites</h2>
         {favorites.length > 0 ? (
-            <MovieList movies={favorites} />
+            <MovieList movies={favorites} onMovieHover={() => {}}/>
         ) : (
             <p>No favorites added yet.</p>
         )}

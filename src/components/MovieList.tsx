@@ -12,15 +12,21 @@ interface Movie {
 
 interface MovieListProps {
   movies: Movie[];
+  onMovieHover: (movie: any) => void;
 }
 
-const MovieList: React.FC<MovieListProps> = ({ movies }) => {
+const MovieList: React.FC<MovieListProps> = ({ movies, onMovieHover }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {movies.map((movie) => (
-        <div key={movie.id} className="border p-4 rounded relative">
+      {movies.map((movie, index) => (
+        <div key={index} 
+        className="border p-4 rounded relative" 
+        onMouseEnter={() => onMovieHover(movie)}
+        //onMouseLeave={() => onMovieHover(null)} 
+        >
           <FavoriteButton movie={movie} />
           <Link to={`/movie/${movie.id}`}>
+          
             <img
               src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
               alt={movie.title}
