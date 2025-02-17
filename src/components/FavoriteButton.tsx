@@ -29,7 +29,7 @@ const FavoriteButton: React.FC<FavoriteButtonProps> =  React.memo(({ movie }) =>
         <button
         onClick={handleToggleFavorite}
         className={`absolute top-2 right-2 p-2 rounded-full ${
-            isFavorite ? 'bg-red-500' : 'bg-gray-800'
+            isFavorite ? 'bg-white' : 'bg-gray-800'
         } text-white hover:bg-red-600 transition-colors`}
         >
         {isFavorite ? '❤️' : '🤍'}

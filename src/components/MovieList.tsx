@@ -20,7 +20,7 @@ const MovieList: React.FC<MovieListProps> =  React.memo(({ movies, onMovieHover 
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {movies.map((movie, index) => (
         <div key={index} 
-        className="border p-4 rounded relative" 
+        className="movielist border p-4 rounded relative" 
         onMouseEnter={() => onMovieHover(movie)}
         //onMouseLeave={() => onMovieHover(null)} 
         >

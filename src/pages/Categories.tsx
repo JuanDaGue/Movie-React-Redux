@@ -79,7 +79,7 @@ import SkeletonLoader from '../components/SkeletonLoader';
             {!searchQuery && (
                 <button
                 onClick={() => setPage(page + 1)}
-                className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
+                className="mt-4 bg-gray-800 text-white px-4 py-2 rounded"
                 >
                 Load More
                 </button>

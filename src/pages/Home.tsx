@@ -76,7 +76,7 @@ const Home: React.FC = () => {
             </p>
           }
         >
-          <MovieList movies={movies} onMovieHover={setHoveredMovie} /> 
+              <MovieList movies={movies} onMovieHover={setHoveredMovie} /> 
         </InfiniteScroll>
       )}
     </div>
