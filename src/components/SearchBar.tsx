@@ -28,7 +28,7 @@ interface SearchBarProps {
             />
             <button
             type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded-r hover:bg-blue-600 transition-colors"
+            className="bg-gray-800 text-white px-4 py-2 rounded-r hover:bg-gray-600 transition-colors"
             >
             Search
             </button>
