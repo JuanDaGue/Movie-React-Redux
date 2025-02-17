@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import FavoriteButton from './FavoriteButton';
-
+import { useTheme } from '../context/ThemeContext';
 interface Movie {
   id: number;
   title: string;
@@ -16,11 +16,12 @@ interface MovieListProps {
 }
 
 const MovieList: React.FC<MovieListProps> =  React.memo(({ movies, onMovieHover }) => {
+  const { isDarkMode } = useTheme();
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {movies.map((movie, index) => (
         <div key={index} 
-        className="movielist border p-4 rounded relative" 
+        className={`${isDarkMode ? 'movielist' : 'bg-white text-gray-900'} border p-4 rounded relative`} 
         onMouseEnter={() => onMovieHover(movie)}
         //onMouseLeave={() => onMovieHover(null)} 
         >

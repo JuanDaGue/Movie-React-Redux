@@ -8,7 +8,7 @@ const Hero: React.FC<HeroProps> = ({ movie }) => {
     if (!movie) return null;
     console.log("Hero", movie);
     return (
-        <div className="max-h-150 hero-container p-8  text-white mb-4 m-6 rounded-md flex flex-col md:flex-row">
+        <div className="max-h-150 hero-container p-8 ${isDarkMode ? ' text-gray-100' : 'bg-white text-gray-900'}` mb-4 m-6 rounded-md flex flex-col md:flex-row">
             <div className="hero-image md:w-1/2 max-h-125 md:max-h-full">
                 <img
                     src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}

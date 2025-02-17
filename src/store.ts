@@ -1,4 +1,3 @@
-// src/store.ts
 import { configureStore } from '@reduxjs/toolkit';
 import { movieApi } from './features/movieApi';
 import favoritesReducer from './features/favoritesSlice';
