@@ -5,7 +5,7 @@ interface SearchBarProps {
     onSearch: (query: string) => void;
     }
 
-    const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+    const SearchBar: React.FC<SearchBarProps> =  React.memo(({ onSearch }) => {
     const [query, setQuery] = useState('');
 
     useEffect(() => {
@@ -35,6 +35,6 @@ interface SearchBarProps {
         </div>
         </form>
     );
-};
+});
 
 export default SearchBar;

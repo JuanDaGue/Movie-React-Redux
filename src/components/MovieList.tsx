@@ -15,7 +15,7 @@ interface MovieListProps {
   onMovieHover: (movie: any) => void;
 }
 
-const MovieList: React.FC<MovieListProps> = ({ movies, onMovieHover }) => {
+const MovieList: React.FC<MovieListProps> =  React.memo(({ movies, onMovieHover }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {movies.map((movie, index) => (
@@ -40,6 +40,6 @@ const MovieList: React.FC<MovieListProps> = ({ movies, onMovieHover }) => {
       ))}
     </div>
   );
-};
+});
 
 export default MovieList;

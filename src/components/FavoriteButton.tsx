@@ -12,7 +12,7 @@ interface FavoriteButtonProps {
     };
 }
 
-const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movie }) => {
+const FavoriteButton: React.FC<FavoriteButtonProps> =  React.memo(({ movie }) => {
     const dispatch = useDispatch();
     const favorites = useSelector((state: RootState) => state.favorites.favorites);
     const isFavorite = favorites.some((fav) => fav.id === movie.id);
@@ -35,6 +35,6 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movie }) => {
         {isFavorite ? '❤️' : '🤍'}
         </button>
     );
-};
+});
 
 export default FavoriteButton;

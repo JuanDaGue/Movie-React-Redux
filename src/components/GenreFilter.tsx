@@ -5,7 +5,7 @@ interface GenreFilterProps {
     onGenreSelect: (genreId: number | null) => void;
     }
 
-    const GenreFilter: React.FC<GenreFilterProps> = ({ onGenreSelect }) => {
+    const GenreFilter: React.FC<GenreFilterProps> =  React.memo(({ onGenreSelect }) => {
     const { data, error, isLoading } = useGetGenresQuery();
     const [selectedGenre, setSelectedGenre] = useState<number | null>(null);
 
@@ -42,6 +42,6 @@ interface GenreFilterProps {
         </div>
         </div>
     );
-};
+});  
 
 export default GenreFilter;
