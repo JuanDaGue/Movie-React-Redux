@@ -1,9 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
+import { SearchBarProps } from '../types';
 
-interface SearchBarProps {
-    onSearch: (query: string) => void;
-    }
 
     const SearchBar: React.FC<SearchBarProps> =  React.memo(({ onSearch }) => {
     const [query, setQuery] = useState('');

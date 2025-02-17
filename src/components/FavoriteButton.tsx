@@ -3,14 +3,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToFavorites, removeFromFavorites } from '../features/favoritesSlice';
 import { RootState } from '../store';
+import { FavoriteButtonProps } from '../types';
 
-interface FavoriteButtonProps {
-    movie: {
-        id: number;
-        title: string;
-        poster_path: string;
-    };
-}
 
 const FavoriteButton: React.FC<FavoriteButtonProps> =  React.memo(({ movie }) => {
     const dispatch = useDispatch();

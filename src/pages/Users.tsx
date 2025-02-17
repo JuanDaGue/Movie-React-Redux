@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
@@ -41,7 +40,7 @@ const User: React.FC = () => {
         <div className=" p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold mb-4">Favorite Movies</h2>
             {favorites.length > 0 ? (
-            <MovieList movies={favorites} />
+            <MovieList movies={favorites} onMovieHover={() => {}}/>
             ) : (
             <p className="text-gray-200">No favorite movies yet.</p>
             )}

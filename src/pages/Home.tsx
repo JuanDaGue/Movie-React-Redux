@@ -4,11 +4,10 @@ import { useGetPopularMoviesQuery, useSearchMoviesQuery } from '../features/movi
 import MovieList from '../components/MovieList';
 import SearchBar from '../components/SearchBar';
 import SkeletonLoader from '../components/SkeletonLoader';
-import Hero from '../components/Hero'; // Import Hero component
-import { useTheme } from '../context/ThemeContext'; // Import useTheme hook
-
+import Hero from '../components/Hero'; 
+import { useTheme } from '../context/ThemeContext'; 
 const Home: React.FC = () => {
-  const { isDarkMode } = useTheme(); // Use theme context
+  const { isDarkMode } = useTheme(); 
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
   const [movies, setMovies] = useState<any[]>([]);

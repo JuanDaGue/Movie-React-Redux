@@ -22,7 +22,7 @@ const Layout: React.FC<LayoutProps> = ({ title, children }) => {
                     <nav className="flex items-center space-x-4">
                         {/* Navigation Links with Icons */}
                         <Link to="/" className="text-lg font-semibold hover:text-yellow-300 transition-colors duration-300">
-                            <FaHome size={20} />
+                            <FaHome size={40} />
                         </Link>
                         <Link to="/categories" className="text-lg font-semibold hover:text-yellow-300 transition-colors duration-300">
                             Categories

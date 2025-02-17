@@ -1,16 +1,12 @@
-
 import React, { useState } from 'react';
-import {
-    useGetPopularMoviesQuery,
-    useGetMoviesByGenreQuery,
-    useSearchMoviesQuery,
-} from '../features/movieApi';
+import { useGetPopularMoviesQuery, useGetMoviesByGenreQuery, useSearchMoviesQuery } from '../features/movieApi';
 import MovieList from '../components/MovieList';
 import GenreFilter from '../components/GenreFilter';
 import SearchBar from '../components/SearchBar';
 import SkeletonLoader from '../components/SkeletonLoader';
+import { MoviesResponse, Movie } from '../types'; // Import the Movie and MoviesResponse types
 
-    const Categories: React.FC = () => {
+const Categories: React.FC = () => {
     const [page, setPage] = useState(1);
     const [selectedGenre, setSelectedGenre] = useState<number | null>(null);
     const [searchQuery, setSearchQuery] = useState('');
@@ -33,7 +29,7 @@ import SkeletonLoader from '../components/SkeletonLoader';
         isLoading: searchLoading,
     } = useSearchMoviesQuery(searchQuery, { skip: !searchQuery });
 
-    let movies;
+    let movies: Movie[] | undefined;
     if (searchQuery) {
         movies = searchResults?.results;
     } else if (selectedGenre) {
@@ -64,30 +60,30 @@ import SkeletonLoader from '../components/SkeletonLoader';
 
     return (
         <div className="p-4">
-        <h1 className="text-2xl font-bold mb-4">Popular Movies</h1>
-        <SearchBar onSearch={setSearchQuery} />
-        <GenreFilter onGenreSelect={setSelectedGenre} />
-        {isLoading ? (
-            <SkeletonLoader />
-        ) : (
-            <>
-            {movies?.length === 0 ? (
-                <p className="text-gray-600">No movies found.</p>
+            <h1 className="text-2xl font-bold mb-4">Genre</h1>
+            <SearchBar onSearch={setSearchQuery} />
+            <GenreFilter onGenreSelect={setSelectedGenre} />
+            {isLoading ? (
+                <SkeletonLoader />
             ) : (
-                <MovieList movies={movies || [] }  onMovieHover={() => {}}/>
+                <>
+                    {movies?.length === 0 ? (
+                        <p className="text-gray-600">No movies found.</p>
+                    ) : (
+                        <MovieList movies={movies || []} onMovieHover={() => {}} />
+                    )}
+                    {!searchQuery && (
+                        <button
+                            onClick={() => setPage(page + 1)}
+                            className="mt-4 bg-gray-800 text-white px-4 py-2 rounded"
+                        >
+                            Load More
+                        </button>
+                    )}
+                </>
             )}
-            {!searchQuery && (
-                <button
-                onClick={() => setPage(page + 1)}
-                className="mt-4 bg-gray-800 text-white px-4 py-2 rounded"
-                >
-                Load More
-                </button>
-            )}
-            </>
-        )}
         </div>
     );
-    };
+};
 
-    export default Categories;
+export default Categories;

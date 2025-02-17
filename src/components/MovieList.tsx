@@ -2,19 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import FavoriteButton from './FavoriteButton';
 import { useTheme } from '../context/ThemeContext';
-interface Movie {
-  id: number;
-  title: string;
-  poster_path: string;
-  vote_average: number;
-  release_date: string;
-}
-
-interface MovieListProps {
-  movies: Movie[];
-  onMovieHover: (movie: any) => void;
-}
-
+import { MovieListProps } from '../types';
 const MovieList: React.FC<MovieListProps> =  React.memo(({ movies, onMovieHover }) => {
   const { isDarkMode } = useTheme();
   return (
